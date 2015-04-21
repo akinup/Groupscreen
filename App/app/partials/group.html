@@ -1,0 +1,20 @@
+<p>{{gruppenId}}</p>
+<ul ng-repeat="item in music">
+	<li>
+		<button ng-click="removeSong(item)">-</button>
+		{{item.title}}
+	</li>
+</ul>
+
+<input type="text" ng-model="musicValue" name="musicValue" placeholder="Musiktitel" ng-change="querySoundCloud()">
+<p>Für die Suche ergaben sich folgende Ergebnise:
+	<ul ng-repeat="item in youtubeEntries">
+		<li>
+			  <a class="media-left">
+	    <img  ng-src="{{item.media$group.media$thumbnail[0].url}}">
+	  </a>
+	  {{item.media$group.media$title.$t}}
+	  <button ng-click="addSong(item)">+</button>
+	</li>
+		<!-- <li ng.repeat="(key, value) in entry.title">{{value}}</li> -->
+	</ul>
