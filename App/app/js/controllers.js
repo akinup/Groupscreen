@@ -29,9 +29,10 @@ $scope.submit = function() {
   //later we have to check if the group-object itself is available
   var music = new Firebase('https://shining-fire-8634.firebaseio.com/' + $scope.groupId + '/music/playlist'); 
   $scope.music = $firebaseArray(music);
+  console.log($scope.music);
   $scope.music.$loaded(function() {
-    dataExists = $scope.music.$value !== null;
-    if(dataExists) {
+    dataExists = $scope.music.length;
+    if(dataExists != 0) {
       $location.path(url);
     } else {
       window.alert("Invalid Groupid");
