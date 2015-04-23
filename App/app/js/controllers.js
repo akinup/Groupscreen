@@ -25,6 +25,7 @@ groupScreenCtrls.controller('DashboardCtrl', function($scope, $location, $fireba
 $scope.submit = function() {
   var url = '/dashboard/group/'+$scope.groupId;
   var dataExists = false;
+
   //TODO: Here we are checking if data for the object music is available...
   //later we have to check if the group-object itself is available
   var music = new Firebase('https://shining-fire-8634.firebaseio.com/' + $scope.groupId + '/music/playlist'); 
