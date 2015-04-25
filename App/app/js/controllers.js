@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-var groupScreenCtrls =  angular.module('groupScreenCtrls', ['firebase']);
+var groupScreenCtrls =  angular.module('groupScreenCtrls', ['firebase','mediaPlayer']);
 
 groupScreenCtrls.controller('DashboardCtrl', function($scope, $location, $firebaseArray){
 
@@ -76,5 +76,15 @@ groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $
   $scope.removeSong = function(item) {
     $scope.music.$remove(item);
   }
+
+
+  $scope.mySpecialPlayButton = function () {
+    $scope.audio1.play();
+  };
+
+  
+    $scope.mySpecialPlayButton2 = function () {
+    $scope.audio1.pause();
+  };
   
 });

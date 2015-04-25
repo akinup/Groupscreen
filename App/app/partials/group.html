@@ -1,3 +1,15 @@
+<div>
+  <audio media-player="audio1" data-playlist="playlist1">
+    <source src="http://upload.wikimedia.org/wikipedia/en/d/d0/Rick_Astley_-_Never_Gonna_Give_You_Up.ogg" type="audio/ogg">
+  </audio>
+  <button ng-click="mySpecialPlayButton()">+</button>
+  <button ng-click="mySpecialPlayButton2()">-</button>
+  <span ng-show="audio1.playing">Player status: Playing</span>
+  <span ng-show="!audio1.playing">Player status: Paused</span>
+</div>
+
+
+<div>
 <p>{{gruppenId}}</p>
 <ul ng-repeat="item in music">
 	<li>
@@ -18,3 +30,7 @@
 	</li>
 		<!-- <li ng.repeat="(key, value) in entry.title">{{value}}</li> -->
 	</ul>
+	</div>
+
+
+
