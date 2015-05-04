@@ -1,25 +1,9 @@
 'use strict';
 
 /* Controllers */
-var groupScreenCtrls =  angular.module('groupScreenCtrls', ['firebase','mediaPlayer']);
+var groupScreenCtrls =  angular.module('groupScreenCtrls', ['firebase','mediaPlayer','spotify']);
 
 groupScreenCtrls.controller('DashboardCtrl', function($scope, $location, $firebaseArray){
-
-
-    // var ref = new Firebase('https://shining-fire-8634.firebaseio.com/group1');
-    // var fb = $firebase(ref);
-    //  fb.$set({
-    //   music: {
-    //     playlist: {
-    //       'asdasd': {
-    //         url: 'www.youtube.com/asdasdas'
-    //       },
-    //       'asd': {
-    //         url: 'www.youtube.com/Nicki'
-    //       }
-    //     }
-    //   }
-    // });
 
 
 $scope.submit = function() {
@@ -44,7 +28,7 @@ $scope.submit = function() {
 
 
 
-groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $firebaseArray) {
+groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $firebaseArray,Spotify) {
 
   $scope.gruppenId = $routeParams.groupId;
   var musicUrl = new Firebase('https://shining-fire-8634.firebaseio.com/' + $scope.gruppenId + '/music'); 
@@ -77,14 +61,19 @@ groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $
     $scope.music.$remove(item);
   }
 
-
   $scope.mySpecialPlayButton = function () {
     $scope.audio1.play();
-  };
-
+    Spotify.search('teen', 'track').then(function (data) {
+  console.log(data);
+});
+  }
   
-    $scope.mySpecialPlayButton2 = function () {
+  $scope.mySpecialPlayButton2 = function () {
     $scope.audio1.pause();
-  };
-  
+    Spotify.getTrack('4hy4fb5D1KL50b3sng9cjw').then(function (data) {
+  console.log(data);
+});
+  }
+
+
 });
