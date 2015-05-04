@@ -36,9 +36,9 @@ groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $
 
   $scope.music = $firebaseArray(playlistUrl);
 
-  $scope.querySoundCloud = function() {
+  $scope.queryYoutube = function() {
     var url  =  'http://gdata.youtube.com/feeds/api/videos?q=';
-    url += $scope.musicValue;
+    url += $scope.musicValueYoutube;
     url += ' &start-index=21&max-results=10&v=2&alt=json';
 
     $http.get(url)
@@ -47,32 +47,49 @@ groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $
     });
   }
 
-  $scope.addSong = function(item) {
+  $scope.addSongYoutube = function(item) {
     $scope.music.$add({
       title: item.media$group.media$title.$t,
-      url: item.link[0].href
+      url: item.link[0].href,
+      type: " ------ Yotube"
     });
 
-    $scope.musicValue = "";
+    $scope.musicValueYoutube = "";
     $scope.youtubeEntries = "";
   }
 
-  $scope.removeSong = function(item) {
+  $scope.removeSongYoutube = function(item) {
     $scope.music.$remove(item);
   }
+//----------------------------------------------------------
+  $scope.querySpotify = function() {
+    Spotify.search($scope.musicValueSpotify, 'track').then(function (data) {
+      $scope.SpotifyEntries = data.tracks.items;
+    });
+  }
+
+  $scope.addSongSpotify = function(item) {
+    $scope.music.$add({
+      title: item.name,
+      url: item.external_urls.spotify,
+      type: " ------ Spotify"
+    });
+
+    $scope.musicValue = "";
+    $scope.SpotifyEntries = "";
+  }
+
+  $scope.removeSongSpotify = function(item) {
+    $scope.music.$remove(item);
+  }
+//----------------------------------------------------------
 
   $scope.mySpecialPlayButton = function () {
     $scope.audio1.play();
-    Spotify.search('teen', 'track').then(function (data) {
-  console.log(data);
-});
   }
   
   $scope.mySpecialPlayButton2 = function () {
     $scope.audio1.pause();
-    Spotify.getTrack('4hy4fb5D1KL50b3sng9cjw').then(function (data) {
-  console.log(data);
-});
   }
 
 

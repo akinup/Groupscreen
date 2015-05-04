@@ -1,3 +1,5 @@
+<H1 align="center">{{gruppenId}}</H1>
+
 <div>
   <audio media-player="audio1" data-playlist="playlist1">
    <source src="https://p.scdn.co/mp3-preview/da2469143494dbd1929b1c9767e53670752d54aa" type="audio/ogg">
@@ -9,15 +11,21 @@
 </div>
 
 <div>
-<p>{{gruppenId}}</p>
 <ul ng-repeat="item in music">
 	<li>
-		<button ng-click="removeSong(item)">-</button>
+		<button ng-click="removeSongYoutube(item)">-</button>
 		{{item.title}}
+		{{item.type}}
 	</li>
 </ul>
+</div>
 
-<input type="text" ng-model="musicValue" name="musicValue" placeholder="Musiktitel" ng-change="querySoundCloud()">
+<div>
+<H1>Youtube</H1>
+
+
+
+<input type="text" ng-model="musicValueYoutube" name="musicValueYoutube" placeholder="Musiktitel" ng-change="queryYoutube()">
 <p>Für die Suche ergaben sich folgende Ergebnise:
 	<ul ng-repeat="item in youtubeEntries">
 		<li>
@@ -25,8 +33,27 @@
 	    <img  ng-src="{{item.media$group.media$thumbnail[0].url}}">
 	  </a>
 	  {{item.media$group.media$title.$t}}
-	  <button ng-click="addSong(item)">+</button>
+	  <button ng-click="addSongYoutube(item)">+</button>
 	</li>
 		<!-- <li ng.repeat="(key, value) in entry.title">{{value}}</li> -->
+	</ul>
+	</div>
+
+
+	<div>
+<H1>Spotify</H1>
+
+
+<!-- TODO fires an request when its empty -->
+<input type="text" ng-model="musicValueSpotify" name="musicValueSpotify" placeholder="Musiktitel" ng-change="querySpotify()">
+<p>Für die Suche ergaben sich folgende Ergebnise:
+	<ul ng-repeat="item in SpotifyEntries">
+		<li>
+			  <a class="media-left">
+	    <img  ng-src="{{item.album.images[0].url}}" height="100" width="100">
+	  </a>
+	  {{item.name}}
+	  <button ng-click="addSongSpotify(item)">+</button>
+	</li>
 	</ul>
 	</div>
