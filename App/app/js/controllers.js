@@ -51,7 +51,7 @@ groupScreenCtrls.controller('GroupCtrl', function($scope, $routeParams, $http, $
     $scope.music.$add({
       title: item.media$group.media$title.$t,
       url: item.link[0].href,
-      type: " ------ Yotube"
+      type: " ------ Youtube"
     });
 
     $scope.musicValueYoutube = "";
